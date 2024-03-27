@@ -7,7 +7,7 @@ const MyLogo = () => {
     borderRadius: "50%",
     height: "40px",
     width: "40px",
-    background: theme.colors.primary,
+    background: theme.colors.darkGrey,
   };
   return <div style={containerStyle}></div>;
 };
