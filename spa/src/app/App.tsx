@@ -1,8 +1,8 @@
 import { ThemeProvider } from "@mui/material";
 import React from "react";
 
-import { theme } from "./theme";
 import AppContent from "./AppContent";
+import { theme } from "./theme";
 
 function App() {
   return (

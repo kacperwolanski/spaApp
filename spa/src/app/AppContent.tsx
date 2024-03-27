@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-import PaginatedList from "../ui/paginatedList/PaginatedList";
+import Table from "../ui/table/Table";
 import TopSection from "../ui/topSection/TopSection";
 import FilterBar from "../ui/filter/FilterBar";
 
@@ -11,13 +11,14 @@ const AppContent = () => {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    minWidth: "900px",
   };
   return (
     <Box padding="100px">
       <TopSection />
       <Box sx={containerStyle}>
         <FilterBar />
-        <PaginatedList />
+        <Table />
       </Box>
     </Box>
   );
