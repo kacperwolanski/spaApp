@@ -21,14 +21,17 @@ const Item = ({ itemProps, sx }: Props) => {
     padding: "15px 10px",
     color: theme.colors.light,
     transition: "background-color 0.3s",
-    ":hover": {
-      backgroundColor: theme.colors.secondary,
-      cursor: "pointer",
-    },
+    ":hover":
+      id !== "id"
+        ? {
+            backgroundColor: theme.colors.secondary,
+            cursor: "pointer",
+          }
+        : {},
     ...sx,
   };
   const handleClick = () => {
-    setModalItem(itemProps);
+    if (id !== "id") setModalItem(itemProps);
   };
   return (
     <Box sx={containerStyle} onClick={handleClick}>

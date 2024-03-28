@@ -8,7 +8,7 @@ const MainHeader = () => {
     textAlign: "center",
     color: theme.colors.light,
   };
-  return <Box sx={headerStyle}>Main Header for page</Box>;
+  return <Box sx={headerStyle}>My single page app</Box>;
 };
 
 export default MainHeader;
