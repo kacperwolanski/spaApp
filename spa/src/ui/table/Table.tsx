@@ -5,9 +5,12 @@ import { Box, Typography } from "@mui/material";
 import { theme } from "../../app/theme";
 import usePaginatedItems from "../../features/hooks/usePaginatedItems";
 import PaginatedItemsList from "./PaginatedItemsList";
+import { useAppStore } from "../../store";
+import SearchResults from "./SearchResults";
 
 const Table = () => {
   const { paginatedItemsList, isLoading } = usePaginatedItems();
+  const { searchForId } = useAppStore();
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -30,9 +33,17 @@ const Table = () => {
   return (
     <Box sx={containerStyle}>
       <Item itemProps={infoItem} sx={style} />
-      {isLoading && !paginatedItemsList && <Typography>loading...</Typography>}
-      {!isLoading && paginatedItemsList && (
-        <PaginatedItemsList items={paginatedItemsList} />
+      {searchForId ? (
+        <SearchResults />
+      ) : (
+        <>
+          {isLoading && !paginatedItemsList && (
+            <Typography>loading...</Typography>
+          )}
+          {!isLoading && paginatedItemsList && (
+            <PaginatedItemsList items={paginatedItemsList} />
+          )}
+        </>
       )}
     </Box>
   );
