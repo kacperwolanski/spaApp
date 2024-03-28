@@ -1,9 +1,10 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box, debounce } from "@mui/material";
 import { useAppStore } from "../../store";
 
 const FilterBar = () => {
   const { searchForId, setSearchForId } = useAppStore();
+
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
@@ -11,15 +12,23 @@ const FilterBar = () => {
     textAlign: "center",
     mt: "20px",
   };
+
   const inputStyle = {
     borderRadius: "20px",
     width: "20%",
     height: "30px",
     outline: "none",
   };
+
+  const debouncedSetSearchForId = debounce((value: string) => {
+    setSearchForId(parseInt(value));
+  }, 500);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchForId(parseInt(event.target.value));
+    const { value } = event.target;
+    debouncedSetSearchForId(value);
   };
+
   return (
     <Box sx={containerStyle}>
       <input
@@ -27,7 +36,7 @@ const FilterBar = () => {
         style={{ ...inputStyle, textAlign: "center" }}
         onChange={handleInputChange}
         placeholder="search for id..."
-        value={searchForId ? searchForId : ""}
+        value={searchForId || ""}
       />
     </Box>
   );
