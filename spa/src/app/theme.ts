@@ -26,4 +26,5 @@ export const theme = {
   fonts: {
     primary: "Arial, sans-serif",
   },
+  modal: {},
 } as const;

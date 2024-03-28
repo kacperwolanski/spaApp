@@ -2,6 +2,7 @@ import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import { theme } from "../../app/theme";
 import { ItemObject } from "../../types/Item";
+import { useAppStore } from "../../store";
 
 interface Props {
   itemProps: ItemObject;
@@ -9,7 +10,8 @@ interface Props {
 }
 
 const Item = ({ itemProps, sx }: Props) => {
-  const { id, name, year, color, pantone_value } = itemProps;
+  const { setModalItem } = useAppStore();
+  const { id, name, year, color } = itemProps;
   const containerStyle = {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
@@ -18,10 +20,15 @@ const Item = ({ itemProps, sx }: Props) => {
     borderBottom: "1px solid grey",
     padding: "15px 10px",
     color: theme.colors.light,
+    transition: "background-color 0.3s",
+    ":hover": {
+      backgroundColor: theme.colors.secondary,
+      cursor: "pointer",
+    },
     ...sx,
   };
   const handleClick = () => {
-    console.log(pantone_value);
+    setModalItem(itemProps);
   };
   return (
     <Box sx={containerStyle} onClick={handleClick}>
