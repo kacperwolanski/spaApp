@@ -4,8 +4,11 @@ import React from "react";
 import Table from "../ui/table/Table";
 import TopSection from "../ui/topSection/TopSection";
 import FilterBar from "../ui/filter/FilterBar";
+import { useAppStore } from "../store";
+import ModalItem from "../ui/ModalItem";
 
 const AppContent = () => {
+  const { modalItem } = useAppStore();
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -15,6 +18,7 @@ const AppContent = () => {
   };
   return (
     <Box padding="100px">
+      {modalItem && <ModalItem />}
       <TopSection />
       <Box sx={containerStyle}>
         <FilterBar />
