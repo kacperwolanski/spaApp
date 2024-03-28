@@ -1,6 +1,9 @@
 import { apiEndpoint } from "../appConstants";
 import axios from "axios";
-export const getItemById = async (itemId: string) => {
+import { ItemObject } from "../types/Item";
+export const getItemById = async (
+  itemId: string
+): Promise<ItemObject | null> => {
   try {
     const response = await axios.get(`${apiEndpoint}/${itemId}`);
     const apiItem = response.data;
@@ -8,6 +11,6 @@ export const getItemById = async (itemId: string) => {
     return apiItemData;
   } catch (error) {
     console.error("Error fetching item:", error);
-    throw error;
+    return null;
   }
 };
