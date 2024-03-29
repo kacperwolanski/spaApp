@@ -17,6 +17,7 @@ const Item = ({ itemProps, sx, isInfoItem }: Props) => {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
     gap: "10px",
+    mt: "1px",
     background: color,
     padding: "15px 10px",
     color: theme.colors.light,
