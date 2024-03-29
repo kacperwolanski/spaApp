@@ -6,6 +6,7 @@ import usePaginatedItems from "../../hooks/usePaginatedItems";
 import { useAppStore } from "../../store";
 import SearchResults from "./SearchResults";
 import PaginationContent from "./pagination/PaginationContent";
+import ErrorMessage from "../../app/ErrorMessage";
 
 const Table = () => {
   const { paginatedItemsList = [], isLoading } = usePaginatedItems();
@@ -24,6 +25,9 @@ const Table = () => {
   const infoItemStyle = {
     background: theme.colors.light,
     color: theme.colors.neutralDark,
+    borderTopLeftRadius: "20px",
+    borderTopRightRadius: "20px",
+    mb: "0px",
   };
 
   const infoItem = {
@@ -44,7 +48,7 @@ const Table = () => {
           isLoading={isLoading}
         />
       )}
-      {errorMessage}
+      <ErrorMessage errorMessage={errorMessage} />
     </Box>
   );
 };
