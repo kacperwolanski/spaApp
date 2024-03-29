@@ -29,7 +29,7 @@ const Table = () => {
     name: "name",
     year: "year",
     pantone_value: "",
-    color: theme.colors.darkGray,
+    color: theme.colors.darkGrey,
   };
   return (
     <Box sx={containerStyle}>
