@@ -7,7 +7,7 @@ import ItemSkeleton from "../skeletons/ItemSkeleton";
 import { useApiClient } from "../../api/apiClient";
 
 const SearchResults = () => {
-  const { searchForId } = useAppStore();
+  const { searchForId, errorMessage } = useAppStore();
   const { getItemById } = useApiClient();
   const [searchResults, setSearchResults] = useState<ItemObject | null>(null);
 
@@ -24,9 +24,9 @@ const SearchResults = () => {
 
   if (searchResults) {
     return <Item itemProps={searchResults} />;
-  } else {
+  } else if (!errorMessage.length) {
     return <ItemSkeleton />;
-  }
+  } else return <></>;
 };
 
 export default SearchResults;

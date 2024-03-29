@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import React from "react";
-
 import Table from "../ui/table/Table";
 import TopSection from "../ui/topSection/TopSection";
 import FilterBar from "../ui/filter/FilterBar";
