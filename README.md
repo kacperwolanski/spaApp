@@ -52,3 +52,7 @@ Tips
 - Proposed styling library (contains also icons): https://mui.com/
 - You can use Mokku chrome extension to mock different responses from API, i.e. 400
 error code
+
+![image](https://github.com/kacperwolanski/spaApp/assets/101999487/fc3362fd-d434-4f1f-b60b-1c19ff9c4282)
+![image](https://github.com/kacperwolanski/spaApp/assets/101999487/5708a5fc-5252-4124-8012-d803947b1457)
+
