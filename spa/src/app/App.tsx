@@ -1,5 +1,4 @@
 import React from "react";
-
 import AppContent from "./AppContent";
 
 function App() {
