@@ -1,13 +1,15 @@
 import React from "react";
 import { Box } from "@mui/material";
+import { useAppStore } from "../store";
 
 interface Props {
   children: JSX.Element;
 }
 const CustomModal = ({ children }: Props) => {
+  const { setModalItem } = useAppStore();
   const modalStyle = {
     position: "fixed",
-    zIndex: 1000,
+    zIndex: 10,
     left: 0,
     top: 0,
     width: "100%",
@@ -19,7 +21,15 @@ const CustomModal = ({ children }: Props) => {
     alignItems: "center",
   };
 
-  return <Box sx={modalStyle}>{children}</Box>;
+  const handleCloseModalClick = () => {
+    setModalItem(null);
+  };
+
+  return (
+    <Box onClick={handleCloseModalClick} sx={modalStyle}>
+      {children}
+    </Box>
+  );
 };
 
 export default CustomModal;

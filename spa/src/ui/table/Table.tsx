@@ -9,20 +9,22 @@ import PaginationContent from "./pagination/PaginationContent";
 
 const Table = () => {
   const { paginatedItemsList = [], isLoading } = usePaginatedItems();
-
   const { searchForId, errorMessage } = useAppStore();
 
   const containerStyle = {
+    mt: "70px",
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    borderTop: "1px solid white",
-    borderBottom: "1px solid white",
-    padding: "80px 20px",
+
+    overFlow: "hidden",
     textAlign: "center",
   };
 
-  const style = { fontWeight: "800", fontSize: "20px" };
+  const infoItemStyle = {
+    background: theme.colors.light,
+    color: theme.colors.neutralDark,
+  };
 
   const infoItem = {
     id: "id",
@@ -33,7 +35,7 @@ const Table = () => {
   };
   return (
     <Box sx={containerStyle}>
-      <Item itemProps={infoItem} sx={style} />
+      <Item itemProps={infoItem} sx={infoItemStyle} isInfoItem />
       {searchForId ? (
         <SearchResults />
       ) : (
@@ -42,7 +44,6 @@ const Table = () => {
           isLoading={isLoading}
         />
       )}
-
       {errorMessage}
     </Box>
   );

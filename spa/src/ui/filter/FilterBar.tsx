@@ -18,6 +18,7 @@ const FilterBar = () => {
 
   const inputStyle = {
     color: theme.colors.light,
+    borderRadius: "10px",
     width: "70%",
     maxWidth: "600px",
     border: "1px solid",
