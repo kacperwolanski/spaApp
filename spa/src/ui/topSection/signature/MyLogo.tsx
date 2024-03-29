@@ -3,13 +3,12 @@ import { theme } from "../../../app/theme";
 
 const MyLogo = () => {
   const containerStyle = {
-    border: "1px solid",
-    borderRadius: "50%",
-    height: "40px",
-    width: "40px",
-    background: theme.colors.darkGrey,
+    color: theme.colors.light,
+    fontSize: "20px",
+    fontWeight: "200",
+    letterSpacing: "5px",
   };
-  return <div style={containerStyle}></div>;
+  return <div style={containerStyle}>colorize</div>;
 };
 
 export default MyLogo;
