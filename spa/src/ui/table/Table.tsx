@@ -17,7 +17,6 @@ const Table = () => {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-
     overFlow: "hidden",
     textAlign: "center",
   };
