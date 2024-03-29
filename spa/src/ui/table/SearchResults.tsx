@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAppStore } from "../../store";
-
 import { ItemObject } from "../../types/Item";
 import Item from "./Item";
 import ItemSkeleton from "../skeletons/ItemSkeleton";
@@ -26,7 +25,8 @@ const SearchResults = () => {
     return <Item itemProps={searchResults} />;
   } else if (!errorMessage.length) {
     return <ItemSkeleton />;
-  } else return <></>;
+  }
+  return <></>;
 };
 
 export default SearchResults;

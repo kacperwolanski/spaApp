@@ -1,6 +1,6 @@
 import React from "react";
-import { ItemObject } from "../../types/Item";
-import Item from "./Item";
+import { ItemObject } from "../../../types/Item";
+import Item from "../Item";
 import { Box } from "@mui/material";
 
 interface Props {

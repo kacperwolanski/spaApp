@@ -2,9 +2,9 @@ import React from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box, Typography } from "@mui/material";
-import { useAppStore } from "../../store";
-import useItemsTotalAmount from "../../hooks/useItemsTotalAmount";
-import { elementsPerPageAmount } from "../../appConstants";
+import { useAppStore } from "../../../store";
+import useItemsTotalAmount from "../../../hooks/useItemsTotalAmount";
+import { elementsPerPageAmount } from "../../../appConstants";
 
 const PaginationArrows = () => {
   const { paginationIndex, setPaginationIndex, totalItemsAmount } =
