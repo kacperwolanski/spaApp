@@ -2,18 +2,19 @@ import { apiEndpoint } from "../appConstants";
 import axios from "axios";
 import { ItemObject } from "../types/Item";
 import { ItemInfo } from "../types/ItemInfo";
-import { useState } from "react";
+import { useAppStore } from "../store";
 
 export const useApiClient = () => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const { setErrorMessage } = useAppStore();
   const getItemById = async (itemId: string): Promise<ItemObject | null> => {
     try {
       const response = await axios.get(`${apiEndpoint}/${itemId}`);
       const apiItem = response.data;
       const apiItemData = apiItem.data;
+      if (apiItemData) setErrorMessage("");
       return apiItemData;
     } catch (error) {
-      setErrorMessage("Error fetching item");
+      setErrorMessage("No items to fetch");
       return null;
     }
   };
@@ -22,6 +23,7 @@ export const useApiClient = () => {
     try {
       const response = await axios.get(`${apiEndpoint}`);
       const responseData = response.data;
+      if (responseData) setErrorMessage("");
       return responseData;
     } catch (error) {
       setErrorMessage("Error fetching items info");
@@ -31,6 +33,5 @@ export const useApiClient = () => {
   return {
     getItemById,
     getItemsInfo,
-    errorMessage,
   };
 };

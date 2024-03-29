@@ -12,7 +12,7 @@ import PaginationArrows from "./ PaginationArrows";
 const Table = () => {
   const { paginatedItemsList, isLoading } = usePaginatedItems();
 
-  const { searchForId } = useAppStore();
+  const { searchForId, errorMessage } = useAppStore();
 
   const containerStyle = {
     display: "flex",
@@ -51,6 +51,8 @@ const Table = () => {
           )}
         </>
       )}
+
+      {errorMessage}
     </Box>
   );
 };
