@@ -3,14 +3,17 @@ import Item from "./Item";
 import { Box, Typography } from "@mui/material";
 
 import { theme } from "../../app/theme";
-import usePaginatedItems from "../../features/hooks/usePaginatedItems";
+import usePaginatedItems from "../../hooks/usePaginatedItems";
 import PaginatedItemsList from "./PaginatedItemsList";
 import { useAppStore } from "../../store";
 import SearchResults from "./SearchResults";
+import PaginationArrows from "./ PaginationArrows";
 
 const Table = () => {
   const { paginatedItemsList, isLoading } = usePaginatedItems();
+
   const { searchForId } = useAppStore();
+
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -41,7 +44,10 @@ const Table = () => {
             <Typography>loading...</Typography>
           )}
           {!isLoading && paginatedItemsList && (
-            <PaginatedItemsList items={paginatedItemsList} />
+            <>
+              <PaginatedItemsList items={paginatedItemsList} />
+              <PaginationArrows />
+            </>
           )}
         </>
       )}
