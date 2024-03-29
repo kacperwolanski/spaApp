@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, debounce } from "@mui/material";
+import { Box, debounce, TextField } from "@mui/material";
 import { useAppStore } from "../../store";
 import { debounceTime } from "../../appConstants";
-
+import SearchIcon from "@mui/icons-material/Search";
+import { theme } from "../../app/theme";
 const FilterBar = () => {
   const { searchForId, setSearchForId } = useAppStore();
 
@@ -12,13 +13,29 @@ const FilterBar = () => {
     width: "100%",
     textAlign: "center",
     mt: "20px",
+    mb: "20px",
   };
 
   const inputStyle = {
-    borderRadius: "20px",
-    width: "20%",
-    height: "30px",
-    outline: "none",
+    color: theme.colors.light,
+    width: "70%",
+    maxWidth: "600px",
+    border: "1px solid",
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        border: "none",
+      },
+      "&:hover fieldset": {
+        border: "none",
+      },
+      "&.Mui-focused fieldset": {
+        border: "none",
+      },
+      "& ::placeholder": {
+        color: "white",
+      },
+    },
+    input: { color: "white" },
   };
 
   const debouncedSetSearchForId = debounce((value: string) => {
@@ -27,17 +44,21 @@ const FilterBar = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    debouncedSetSearchForId(value);
+    const numericValue = value.replace(/\D/g, "");
+    debouncedSetSearchForId(numericValue);
   };
 
   return (
     <Box sx={containerStyle}>
-      <input
-        title="Enter a number for id"
-        style={{ ...inputStyle, textAlign: "center" }}
+      <TextField
         onChange={handleInputChange}
-        placeholder="search for id..."
-        value={searchForId || ""}
+        value={searchForId ? searchForId : ""}
+        sx={inputStyle}
+        variant="outlined"
+        placeholder="Search for Id"
+        InputProps={{
+          startAdornment: <SearchIcon sx={{ color: theme.colors.light }} />,
+        }}
       />
     </Box>
   );
