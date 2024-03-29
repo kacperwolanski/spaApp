@@ -6,10 +6,12 @@ export interface AppStore {
   searchForId: number | null;
   paginationIndex: number;
   totalItemsAmount: number | null;
+  errorMessage: string;
   setModalItem: (newModalItem: ItemObject | null) => void;
   setSearchForId: (searchForId: number) => void;
   setPaginationIndex: (paginationIndex: number) => void;
   setTotalItemsAmount: (totalItemsAmount: number) => void;
+  setErrorMessage: (error: string) => void;
 }
 
 export const useAppStore = create<AppStore>()((set) => ({
@@ -17,6 +19,7 @@ export const useAppStore = create<AppStore>()((set) => ({
   searchForId: null,
   paginationIndex: 1,
   totalItemsAmount: null,
+  errorMessage: "",
   setModalItem: (newModalItem: ItemObject | null) =>
     set(() => ({
       modalItem: newModalItem,
@@ -32,5 +35,9 @@ export const useAppStore = create<AppStore>()((set) => ({
   setTotalItemsAmount: (totalItemsAmount: number) =>
     set(() => ({
       totalItemsAmount,
+    })),
+  setErrorMessage: (errorMessage: string) =>
+    set(() => ({
+      errorMessage,
     })),
 }));
