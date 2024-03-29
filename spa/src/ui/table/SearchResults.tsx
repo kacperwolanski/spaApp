@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAppStore } from "../../store";
-import { getItemById } from "../../api/apiClient";
+
 import { ItemObject } from "../../types/Item";
 import Item from "./Item";
 import ItemSkeleton from "../skeletons/ItemSkeleton";
+import { useApiClient } from "../../api/apiClient";
 
 const SearchResults = () => {
   const { searchForId } = useAppStore();
+  const { getItemById } = useApiClient();
   const [searchResults, setSearchResults] = useState<ItemObject | null>(null);
 
   useEffect(() => {

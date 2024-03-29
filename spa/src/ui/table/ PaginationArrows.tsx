@@ -21,7 +21,7 @@ const PaginationArrows = () => {
   const arrowStyle = {
     color: "white",
     "&:hover": {
-      colors: "darkgrey",
+      color: "darkgrey",
       cursor: "pointer",
     },
   };
@@ -29,6 +29,16 @@ const PaginationArrows = () => {
     mt: "5x",
     color: "white",
   };
+
+  const arrowDisabledStyle = {
+    color: "darkgrey",
+  };
+
+  const disabledForwardArrow = totalItemsAmount
+    ? paginationIndex >= Math.ceil(totalItemsAmount / elementsPerPageAmount)
+    : false;
+
+  const disabledBackArrow = paginationIndex == 1;
 
   const handleBackArrowClick = () => {
     const destinationIndex = paginationIndex - 1;
@@ -46,9 +56,15 @@ const PaginationArrows = () => {
   };
   return (
     <Box sx={containerStyle}>
-      <ArrowBackIosNewIcon sx={arrowStyle} onClick={handleBackArrowClick} />
+      <ArrowBackIosNewIcon
+        sx={disabledBackArrow ? arrowDisabledStyle : arrowStyle}
+        onClick={handleBackArrowClick}
+      />
       <Typography sx={pageCountStyle}>{paginationIndex}</Typography>
-      <ArrowForwardIosIcon sx={arrowStyle} onClick={handleForwardArrowClick} />
+      <ArrowForwardIosIcon
+        sx={disabledForwardArrow ? arrowDisabledStyle : arrowStyle}
+        onClick={handleForwardArrowClick}
+      />
     </Box>
   );
 };

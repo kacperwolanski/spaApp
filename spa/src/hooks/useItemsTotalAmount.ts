@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useAppStore } from "../store";
-import { getItemsInfo } from "../api/apiClient";
+import { useApiClient } from "../api/apiClient";
 
 const useItemsTotalAmount = () => {
   const { setTotalItemsAmount, totalItemsAmount } = useAppStore();
+  const { getItemsInfo } = useApiClient();
   const getAndSaveTotalItemsAmount = async () => {
     const response = await getItemsInfo();
     if (response) {

@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { ItemObject } from "../types/Item";
 import { useAppStore } from "../store";
 import { elementsPerPageAmount } from "../appConstants";
-import { getItemById } from "../api/apiClient";
+import { useApiClient } from "../api/apiClient";
 
 const usePaginatedItems = () => {
   const { paginationIndex, totalItemsAmount } = useAppStore();
   const [isLoading, setIsLoading] = useState(true);
+  const { getItemById } = useApiClient();
   const [paginatedItemsList, setPaginatedItemsList] = useState<ItemObject[]>();
 
   const getItems = async (startIndex: number, endIndex: number) => {
