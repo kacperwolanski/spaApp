@@ -1,16 +1,14 @@
 import React from "react";
 import Item from "./Item";
-import { Box, Typography } from "@mui/material";
-
+import { Box } from "@mui/material";
 import { theme } from "../../app/theme";
 import usePaginatedItems from "../../hooks/usePaginatedItems";
-import PaginatedItemsList from "./PaginatedItemsList";
 import { useAppStore } from "../../store";
 import SearchResults from "./SearchResults";
-import PaginationArrows from "./ PaginationArrows";
+import PaginationContent from "./pagination/PaginationContent";
 
 const Table = () => {
-  const { paginatedItemsList, isLoading } = usePaginatedItems();
+  const { paginatedItemsList = [], isLoading } = usePaginatedItems();
 
   const { searchForId, errorMessage } = useAppStore();
 
@@ -39,17 +37,10 @@ const Table = () => {
       {searchForId ? (
         <SearchResults />
       ) : (
-        <>
-          {isLoading && !paginatedItemsList && (
-            <Typography>loading...</Typography>
-          )}
-          {!isLoading && paginatedItemsList && (
-            <>
-              <PaginatedItemsList items={paginatedItemsList} />
-              <PaginationArrows />
-            </>
-          )}
-        </>
+        <PaginationContent
+          paginatedItemsList={paginatedItemsList}
+          isLoading={isLoading}
+        />
       )}
 
       {errorMessage}

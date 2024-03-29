@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, debounce } from "@mui/material";
 import { useAppStore } from "../../store";
+import { debounceTime } from "../../appConstants";
 
 const FilterBar = () => {
   const { searchForId, setSearchForId } = useAppStore();
@@ -22,7 +23,7 @@ const FilterBar = () => {
 
   const debouncedSetSearchForId = debounce((value: string) => {
     setSearchForId(parseInt(value));
-  }, 500);
+  }, debounceTime);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

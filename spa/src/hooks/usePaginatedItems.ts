@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-
 import { ItemObject } from "../types/Item";
 import { useAppStore } from "../store";
-import { elementsPerPageAmount } from "../appConstants";
 import { useApiClient } from "../api/apiClient";
+import { getStartEndIndexes } from "../helpers/getPaginationStartEndIndexes";
 
 const usePaginatedItems = () => {
-  const { paginationIndex, totalItemsAmount } = useAppStore();
+  const { paginationIndex, totalItemsAmount, setErrorMessage } = useAppStore();
   const [isLoading, setIsLoading] = useState(true);
   const { getItemById } = useApiClient();
   const [paginatedItemsList, setPaginatedItemsList] = useState<ItemObject[]>();
@@ -23,17 +22,17 @@ const usePaginatedItems = () => {
       }
       setPaginatedItemsList(items);
     } catch (error) {
-      console.error("Error fetching items:", error);
+      setErrorMessage("Error fetching items:");
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    const startIndex = (paginationIndex - 1) * elementsPerPageAmount + 1;
-    let endIndex = startIndex + elementsPerPageAmount - 1;
-    if (totalItemsAmount && endIndex > totalItemsAmount)
-      endIndex = totalItemsAmount;
+    const { startIndex, endIndex } = getStartEndIndexes(
+      paginationIndex,
+      totalItemsAmount
+    );
     getItems(startIndex, endIndex);
   }, [paginationIndex]);
   return { paginatedItemsList, isLoading };
