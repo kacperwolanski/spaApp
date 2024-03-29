@@ -5,7 +5,7 @@ import CustomModal from "./Modal";
 import { theme } from "../app/theme";
 
 const ModalItem = () => {
-  const { setModalItem, modalItem } = useAppStore();
+  const { modalItem } = useAppStore();
   const { id, name, year, pantone_value, color } = modalItem ?? {};
   const containerStyle = {
     position: "relative",

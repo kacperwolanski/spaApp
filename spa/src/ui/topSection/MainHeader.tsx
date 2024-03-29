@@ -18,7 +18,6 @@ const MainHeader = () => {
   const subtitleStyle = {
     mt: "-30px",
     ml: "495px",
-
     color: theme.colors.light,
   };
   return (

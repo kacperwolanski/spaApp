@@ -3,6 +3,7 @@ import { ItemObject } from "../types/Item";
 import { useAppStore } from "../store";
 import { useApiClient } from "../api/apiClient";
 import { getStartEndIndexes } from "../helpers/getPaginationStartEndIndexes";
+import { fetchingItemsError } from "../appConstants";
 
 const usePaginatedItems = () => {
   const { paginationIndex, totalItemsAmount, setErrorMessage } = useAppStore();
@@ -22,7 +23,7 @@ const usePaginatedItems = () => {
       }
       setPaginatedItemsList(items);
     } catch (error) {
-      setErrorMessage("Error fetching items:");
+      setErrorMessage(fetchingItemsError);
     } finally {
       setIsLoading(false);
     }
